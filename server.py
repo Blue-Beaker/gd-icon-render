@@ -94,8 +94,18 @@ class IconHandler(BaseHTTPRequestHandler):
                 "endpoints": {
                     "GET /": "this info",
                     "GET /icon": "render an icon (see query parameters)",
+                    "GET /random": "redirect to a random icon",
                 },
             })
+            return
+
+        # ── Random icon redirect ──────────────────────────────────────────
+        if parsed.path == "/random":
+            params = _random_example_params()
+            location = "/icon?" + urllib.parse.urlencode(params)
+            self.send_response(302)
+            self.send_header("Location", location)
+            self.end_headers()
             return
 
         if parsed.path != "/icon":
@@ -219,11 +229,19 @@ def _random_example_params():
     while color_id_2 == color_id_1:
         color_id_2 = random.randint(0, 106)
 
+    # glow: 80% random colour, 20% disabled
+    if random.random() < 0.8:
+        glow_id = random.randint(0, 106)
+        glow = str(glow_id)
+    else:
+        glow = "false"
+
     return {
         "gamemode": gamemode,
         "id": icon_id,
         "primary": str(color_id_1),
         "secondary": str(color_id_2),
+        "glow": glow,
     }
 
 

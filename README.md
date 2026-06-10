@@ -16,6 +16,11 @@ python server.py --host 127.0.0.1 --port 8080
 
 - `GDICONS_RESOURCES` — Geometry Dash `Resources` 文件夹路径（可选，默认搜索脚本所在目录及当前目录下的 `Resources/`）
 
+Resources文件夹下需要放入:
+- `icons`
+- `Robot_AnimDesc.plist`
+- `Spider_AnimDesc.plist`
+
 ### API
 
 #### `GET /icon`

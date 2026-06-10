@@ -119,7 +119,7 @@ curl 'http://localhost:8080/icon?gamemode=cube&id=133&primary=%23ffff00&secondar
 
 ## 协议
 
-本项目基于 **GNU General Public License v3 (GPLv3)** 发布。
+本项目基于 **GNU Affero General Public License v3 (AGPLv3)** 发布。
 
 ### 致谢
 

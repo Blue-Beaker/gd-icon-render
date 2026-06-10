@@ -6,6 +6,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 import io
 import json
+import mimetypes
 import os
 import sys
 import urllib.parse
@@ -107,6 +108,20 @@ class IconHandler(BaseHTTPRequestHandler):
             self.send_header("Location", location)
             self.end_headers()
             return
+
+        # ── Serve static files ────────────────────────────────────────────
+        if parsed.path == "/test.html":
+            script_dir = Path(__file__).resolve().parent
+            file_path = script_dir / "test.html"
+            if file_path.is_file():
+                content = file_path.read_bytes()
+                mime_type, _ = mimetypes.guess_type(str(file_path))
+                self.send_response(200)
+                self.send_header("Content-Type", mime_type or "text/html")
+                self.send_header("Content-Length", str(len(content)))
+                self.end_headers()
+                self.wfile.write(content)
+                return
 
         if parsed.path != "/icon":
             self._send_json(404, {"error": "Not found", "path": parsed.path})

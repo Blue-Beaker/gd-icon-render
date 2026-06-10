@@ -1,5 +1,76 @@
 # GD Icon Render HTTP Server
 
+A Geometry Dash icon rendering HTTP server, powered by [gdicons](https://pypi.org/project/gdicons/).
+
+---
+
+[中文版本 ↓](#gd-icon-render-http-server-1)
+
+---
+
+## Usage
+
+```bash
+# Install dependencies
+pip install pillow
+
+# Start the server
+python server.py --host 127.0.0.1 --port 8080
+```
+
+### Environment Variables
+
+- `GDICONS_RESOURCES` — Path to the Geometry Dash `Resources` folder (optional; defaults to searching `Resources/` next to the script and in CWD)
+
+The Resources folder must contain:
+- `icons/`
+- `Robot_AnimDesc.plist`
+- `Spider_AnimDesc.plist`
+
+### API
+
+#### `GET /icon`
+
+Renders and returns a GD icon as PNG.
+
+| Parameter   | Description                                    | Values                                                          | Default   |
+|-------------|------------------------------------------------|-----------------------------------------------------------------|-----------|
+| `gamemode`  | Player form                                    | `cube`, `ship`, `ball`, `ufo`, `wave`, `robot`, `spider`, `swing`, `jetpack` | — |
+| `id`        | Icon ID                                        | Integer                                                         | —         |
+| `primary`   | Primary colour                                 | Hex (`#rrggbb`), colour name, or GD colour ID (0–123)           | —         |
+| `secondary` | Secondary colour                               | Same as `primary`                                               | —         |
+| `glow`      | Glow colour                                    | Same as `primary`, or `false` to disable                        | `false`   |
+| `quality`   | Texture quality                                | `low` / `normal`, `hd`, `uhd`                                   | `uhd`     |
+
+Example:
+
+```bash
+curl 'http://localhost:8080/icon?gamemode=cube&id=133&primary=%23ffff00&secondary=%23b900ff&glow=%23b900ff' -o icon.png
+```
+
+#### `GET /`
+
+Returns server status info.
+
+## License
+
+This project is licensed under the **GNU General Public License v3 (GPLv3)**.
+
+### Acknowledgements
+
+This project includes a modified copy of [gdicons](https://pypi.org/project/gdicons/) (originally by Bradley Pierce), which is licensed under the **GNU Affero General Public License v3 (AGPLv3)**.
+
+Modifications made:
+- Removed the module-level Windows default path call in `gdicons/script.py`; initialisation is now done explicitly by the caller via `set_resources_path()`
+
+See the `gdicons/` directory for the original source.
+
+---
+
+---
+
+# GD Icon Render HTTP Server
+
 基于 [gdicons](https://pypi.org/project/gdicons/) 的 Geometry Dash 图标渲染 HTTP 服务。
 
 ## 使用方法

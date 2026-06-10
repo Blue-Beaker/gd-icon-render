@@ -54,7 +54,7 @@ Returns server status info.
 
 ## License
 
-This project is licensed under the **GNU General Public License v3 (GPLv3)**.
+This project is licensed under the **GNU Affero General Public License v3 (AGPLv3)**.
 
 ### Acknowledgements
 

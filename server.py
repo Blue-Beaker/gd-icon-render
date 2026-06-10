@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""HTTP server that renders Geometry Dash icons based on query parameters."""
+"""HTTP server that renders Geometry Dash icons based on query parameters.
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+"""
 
 import io
 import json

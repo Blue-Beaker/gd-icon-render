@@ -1,0 +1,3 @@
+# GD Icon Render 依赖
+# 使用 Pillow 进行图像处理（合成、着色、图层叠加等）
+Pillow>=10.0.0
